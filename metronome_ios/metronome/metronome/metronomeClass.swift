@@ -27,6 +27,7 @@ class MetronomeClass: ObservableObject {
     @Published var isRunning = false;
     
     init(){
+        setupAudioSession()
         setupAudio()
     }
     
@@ -143,6 +144,16 @@ class MetronomeClass: ObservableObject {
         DispatchQueue.main.async {
               self.metronomeTimer?.cancel()
               self.startMetronome()
+        }
+    }
+    
+    
+    func setupAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Failed to set up audio session: \(error)")
         }
     }
 }

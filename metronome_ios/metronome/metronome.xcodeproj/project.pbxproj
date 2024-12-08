@@ -24,14 +24,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6A500C942D0552AA004833D2 /* metronomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = metronomeTests.xctest; path = "/Volumes/mac2280/code/metronome_ios/metronome/build/Debug-iphoneos/metronome.app/PlugIns/metronomeTests.xctest"; sourceTree = "<absolute>"; };
-		6A500C9E2D0552AA004833D2 /* metronomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = metronomeUITests.xctest; path = "/Volumes/mac2280/code/metronome_ios/metronome/build/Debug-iphoneos/metronomeUITests-Runner.app/PlugIns/metronomeUITests.xctest"; sourceTree = "<absolute>"; };
 		6A500CC42D058737004833D2 /* metronome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = metronome.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A99DBDD2D05DAC90031E53B /* metronomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = metronomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A99DBDE2D05DAC90031E53B /* metronomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = metronomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		6A99DBF82D05DAE90031E53B /* Exceptions for "metronome" folder in "metronome" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 6A500C832D0552A9004833D2 /* metronome */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		6A500C862D0552A9004833D2 /* metronome */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6A99DBF82D05DAE90031E53B /* Exceptions for "metronome" folder in "metronome" target */,
+			);
 			path = metronome;
 			sourceTree = "<group>";
 		};
@@ -79,6 +92,8 @@
 				6A500C972D0552AA004833D2 /* metronomeTests */,
 				6A500CA12D0552AA004833D2 /* metronomeUITests */,
 				6A500CC42D058737004833D2 /* metronome.app */,
+				6A99DBDD2D05DAC90031E53B /* metronomeTests.xctest */,
+				6A99DBDE2D05DAC90031E53B /* metronomeUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,7 +142,7 @@
 			packageProductDependencies = (
 			);
 			productName = metronomeTests;
-			productReference = 6A500C942D0552AA004833D2 /* metronomeTests.xctest */;
+			productReference = 6A99DBDD2D05DAC90031E53B /* metronomeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		6A500C9D2D0552AA004833D2 /* metronomeUITests */ = {
@@ -150,7 +165,7 @@
 			packageProductDependencies = (
 			);
 			productName = metronomeUITests;
-			productReference = 6A500C9E2D0552AA004833D2 /* metronomeUITests.xctest */;
+			productReference = 6A99DBDE2D05DAC90031E53B /* metronomeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -390,6 +405,7 @@
 				DEVELOPMENT_TEAM = GC2338U5HR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = metronome/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -420,6 +436,7 @@
 				DEVELOPMENT_TEAM = GC2338U5HR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = metronome/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
