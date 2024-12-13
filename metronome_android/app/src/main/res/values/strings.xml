@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">metronome</string>
+    <string name="metronome_title">metronome</string>
+    <string name="tuner_title">tuner</string>
+
+    <string name="sw">SW</string>
+    <string name="bpm_hint">bpm</string>
+    <string name="bpm">60</string>
+    <string name="length">200</string>
+    <string-array name="beats">
+        <item>2/4</item>
+        <item>3/4</item>
+        <item>4/4</item>
+    </string-array>
+
+    <string name="pitch_tv_hint">pitch</string>
+    <string name="Sub10">-10</string>
+    <string name="Sub5">-5</string>
+    <string name="Sub1">-1</string>
+    <string name="Add1">+1</string>
+    <string name="Add5">+5</string>
+    <string name="Add10">+10</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
