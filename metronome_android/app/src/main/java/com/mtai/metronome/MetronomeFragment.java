@@ -15,8 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
 
-import org.w3c.dom.Text;
-
 public class MetronomeFragment extends AbstractFragment {
     View view;
 
@@ -29,7 +27,7 @@ public class MetronomeFragment extends AbstractFragment {
     private static final int STATUS_SET_CHANNEL_COUNT = 104;
     private static final int STATUS_SET_BPM = 105;
 
-    private BackgroundRunner mRunner = new MyBackgroundRunner();
+    private final BackgroundRunner mRunner = new MyBackgroundRunner();
     private class MyBackgroundRunner extends BackgroundRunner{
         int audioApi;
         int deviceId;
@@ -95,6 +93,18 @@ public class MetronomeFragment extends AbstractFragment {
         initSwitch();
         initBpmBar();
         startAudioAsync();
+        Log.i(TAG,"load metronome view");
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+    }
+
+    @Override
+    public void onDestroyView(){
+        super.onDestroyView();
+        stopAudioAsync();
+        view = null;
     }
 
     private void initBpmBar(){
@@ -129,33 +139,33 @@ public class MetronomeFragment extends AbstractFragment {
 
     private void initSwitch(){
         SwitchCompat sc = this.view.findViewById(R.id.Switch);
+        sc.setSaveEnabled(false);
+        sc.setChecked(false);
         sc.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked){
                 startMetronome();
-            }
-            else
-            {
+            } else {
                 stopMetronome();
             }
         });
     }
 
     private void startMetronome(){
-        System.out.println("Start metronome");
-        //AudioEngine.playDemo(AudioEngine.handle);
+        Log.i(TAG,"Start metronome");
         AudioEngine.demoSetToneOn(true);
     }
     private void stopMetronome(){
-        System.out.println("Stop metronome");
+        Log.i(TAG,"Stop metronome");
         AudioEngine.demoSetToneOn(false);
     }
 
     void startAudioAsync(){
-        System.out.println("start audio engine");
+        Log.i(TAG,"start audio engine");
         mRunner.sendMessage(STATUS_START);
     }
 
     void stopAudioAsync(){
+        Log.i(TAG,"Stop audio engine");
         mRunner.sendMessage(STATUS_STOP);
     }
 
