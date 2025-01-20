@@ -1,8 +1,10 @@
 package com.mtai.metronome;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         initTabLayout();
     }
+
 
     private void initTabLayout(){
         TabLayout tabLayout = binding.tabLayout;

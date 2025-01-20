@@ -5,6 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:id="@+id/riffView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#FFFFCC"
+        app:layout_constraintBottom_toTopOf="@id/pitchViewContainer"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/pitchViewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="80dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent" >
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/pitchSW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sw" />
+
+    </FrameLayout>
+
+
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -12,10 +38,10 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="50dp"
         android:text="@string/hello_blank_fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/riffView" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,8 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
         EngineNative.cpp
         Demo.cpp
         Demo.h
+        MPM.h
+        MPM.cpp
         ${DEBUG_UTILS_PATH}/trace.cpp
         )
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE

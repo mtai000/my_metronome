@@ -20,6 +20,7 @@ public class AudioEngine {
     public static native int demoStopEngine();
     public static native void demoSetBPM(int bpm);
     public static native void demoSetToneOn(boolean isToneOn);
+    public static native double getPitchFromShort(short[] data,int sampleRate);
     //public static native void demoSetBufferSizeInBursts(int bufferSizeInBursts);
     //public static native double demoGetCurrentOutputLatencyMills();
     //public static native boolean demoIsLatencyDetectionSupported();
