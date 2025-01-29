@@ -14,6 +14,7 @@ public :
 
 private:
     std::vector<double> normalized_square_difference(const std::vector<double> &buffer);
+    std::vector<double> normalized_square_diff_simd(const std::vector<double>& buffer);
 
     std::tuple<double, double> parabolic_interpolation(const std::vector<double> &nsdf, size_t tau);
 

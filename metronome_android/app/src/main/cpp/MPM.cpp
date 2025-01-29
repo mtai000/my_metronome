@@ -4,6 +4,8 @@
 // refer to : https://github.com/sevagh/pitch-detection/blob/master/src/mpm.cpp
 
 #include "MPM.h"
+#include <cpu-features.h>
+#include <arm_neon.h>
 
 double MPM::getPitchFromShort(short *data, int sampleRate, int buffersize) {
     if (!data || buffersize <= 0) {
@@ -17,6 +19,38 @@ double MPM::getPitchFromShort(short *data, int sampleRate, int buffersize) {
     return get_pitch(audioBuffer, sampleRate);
 }
 
+std::vector<double> MPM::normalized_square_diff_simd(const std::vector<double> &buffer) {
+    size_t len = buffer.size();
+    std::vector<double> nsdf(len, 0.0);
+
+    size_t aligned_len = (len/4)*4;
+    for(int tau = 0; tau < aligned_len; ++tau){
+        double acf = 0.0;
+        double divisor_m = 0.0;
+        for(int i = 0; i + tau < aligned_len; i += 4){
+            float32x4_t buffer_vec1 = vld1q_f32(reinterpret_cast<const float *>(&buffer[i]));
+            float32x4_t buffer_vec2 = vld1q_f32(reinterpret_cast<const float *>(&buffer[i + tau]));
+
+            float32x4_t acf_vec = vmulq_f32(buffer_vec1,buffer_vec2);
+            acf += vaddvq_f32(acf_vec);
+
+            float32x4_t p1 = vmulq_f32(buffer_vec1,buffer_vec1);
+            float32x4_t p2 = vmulq_f32(buffer_vec2,buffer_vec2);
+            float32x4_t divisor_vec = vaddq_f32(p1,p2);
+            divisor_m += vaddvq_f32(divisor_vec);
+        }
+
+        for(int i = aligned_len; i+ tau < len; i++){
+            acf += buffer[i] * buffer[i+tau];
+            double p1 = buffer[i] * buffer[i];
+            double p2 = buffer[i+tau] * buffer[i+ tau];
+            divisor_m += p1 + p2;
+        }
+        nsdf[tau] = 2.0*acf/divisor_m;
+    }
+
+    return nsdf;
+}
 
 std::vector<double> MPM::normalized_square_difference(const std::vector<double> &buffer) {
     size_t len = buffer.size();
@@ -103,7 +137,14 @@ std::vector<size_t> peak_picking(const std::vector<double> &nsdf) {
 
 
 double MPM::get_pitch(const std::vector<double> &buffer, size_t sample_rate) {
-    std::vector<double> nsdf = normalized_square_difference(buffer);
+    std::vector<double> nsdf;
+    uint64_t features = android_getCpuFeatures();
+    if (features & ANDROID_CPU_ARM_FEATURE_NEON) {
+        nsdf = normalized_square_diff_simd(buffer);
+    }
+    else {
+        nsdf = normalized_square_difference(buffer);
+    }
     std::vector<size_t> max_positions = peak_picking(nsdf);
     std::vector<std::pair<double, double>> estimates;
 

@@ -12,11 +12,14 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
         Demo.h
         MPM.h
         MPM.cpp
+        ${ANDROID_NDK}/sources/android/cpufeatures/cpu-features.h
+        ${ANDROID_NDK}/sources/android/cpufeatures/cpu-features.c
         ${DEBUG_UTILS_PATH}/trace.cpp
         )
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         ${OBOE_DIR}/include
         ${OBOE_DIR}/samples/shared
+        ${ANDROID_NDK}/sources/android/cpufeatures
         ${DEBUG_UTILS_PATH}
 )
 
